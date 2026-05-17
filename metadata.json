@@ -1,0 +1,8 @@
+{
+  "name": "Dr. Marissa's ENT Clinic",
+  "description": "Modern and professional website for an ENT specialty clinic, featuring booking, services, and contact information.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
