@@ -21,7 +21,8 @@ import {
   Users,
   Timer,
   Microscope,
-  Sofa
+  Sofa,
+  AlertTriangle
 } from 'lucide-react';
 import { DoctorProfileModal } from '@/components/doctor-profile-modal';
 
@@ -344,6 +345,18 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-12 bg-red-50 border border-red-200 rounded-2xl p-6 flex gap-4 items-start max-w-4xl mx-auto">
+            <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
+              <AlertTriangle size={22} />
+            </div>
+            <div>
+              <p className="font-semibold text-red-800 mb-1">Important Safety Note</p>
+              <p className="text-red-700 leading-relaxed text-sm">
+                Emergencies such as airway-obstructing foreign bodies, severe nasal bleeding, or accident-related ENT trauma are not treated here, as they may require emergency imaging or life-saving interventions. Please visit the nearest hospital casualty department immediately for such critical care.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -476,6 +489,7 @@ export default function Home() {
               { q: "Do you treat children?", a: "Yes, we provide comprehensive ENT pediatric care, addressing common childhood issues like recurrent ear infections, tonsillitis, and breathing difficulties." },
               { q: "How is ear wax removal performed?", a: "We primarily use microsuction, a very safe, gentle, and effective way to remove ear wax without using water syringes, reducing the risk of infection." },
               { q: "What are the common signs of vertigo?", a: "Symptoms include a spinning sensation, loss of balance, dizziness, nausea, and ringing in the ears. If you experience these securely, an evaluation is highly recommended." },
+              { q: "Do you treat ENT emergencies?", a: "Emergencies such as airway-obstructing foreign bodies, severe nasal bleeding, or accident-related ENT trauma are not treated here, as they may require emergency imaging or life-saving interventions. Please visit the nearest hospital casualty department immediately for such critical care." },
             ].map((faq, idx) => (
               <details key={idx} className="group bg-white rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex items-center justify-between cursor-pointer p-6 font-medium text-slate-900 font-heading text-lg">
