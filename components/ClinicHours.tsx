@@ -9,9 +9,9 @@ export default function ClinicHours() {
     async function fetchHours() {
       try {
         const res = await fetch(
-          `https://places.googleapis.com/v1/places/${process.env.NEXT_PUBLIC_PLACE_ID}`,
+          `https://places.googleapis.com/v1/places/ChIJF4CXSgC5BTSRHEvEfv0fR1c`,
           { headers: {
-              'X-Goog-Api-Key': process.env.NEXT_PUBLIC_PLACES_API_KEY!,
+              'X-Goog-Api-Key': 'AIzaSyASVHw_gAqiYLPrdNJqR_qDewxEqwoRXNw',
               'X-Goog-FieldMask': 'regularOpeningHours',
           }}
         );
