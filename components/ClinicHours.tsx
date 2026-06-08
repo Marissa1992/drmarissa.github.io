@@ -22,60 +22,78 @@ export default function ClinicHours() {
   }, []);
 
   const todayIdx = new Date().getDay();
+
   if (loading) return (
     <p style={{ color: '#5a7070', fontSize: 14 }}>Loading hours...</p>
   );
   if (!hours.length) return (
-    <p style={{ color: '#5a7070', fontSize: 14 }}>Mon–Fri: 9:00 AM – 9:30 PM</p>
+    <p style={{ color: '#5a7070', fontSize: 14 }}>Hours unavailable</p>
   );
 
   return (
-    <div style={{ width: '100%', maxWidth: 420 }}>
+    <div style={{ width: '100%', maxWidth: 380, fontFamily: 'inherit' }}>
       {hours.map((line, i) => {
         const colonIdx = line.indexOf(':');
-        const day  = line.substring(0, colonIdx).trim();
-        const time = line.substring(colonIdx + 1).trim();
-        const isToday  = i === todayIdx;
-        const isClosed = time.toLowerCase().includes('closed');
+        const day = line.substring(0, colonIdx).trim();
+        const timePart = line.substring(colonIdx + 1).trim();
+        const slots = timePart.split(',').map(s => s.trim());
+        const isToday = i === todayIdx;
+        const isClosed = timePart.toLowerCase().includes('closed');
 
         return (
           <div key={i} style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: 12,
             padding: '10px 14px',
-            marginBottom: 4,
+            marginBottom: 2,
             borderRadius: 10,
-            background: isToday ? '#e6f4f4' : i % 2 === 0 ? '#f8fafa' : 'white',
-            borderLeft: isToday ? '3px solid #0d6e6e' : '3px solid transparent',
+            background: isToday ? '#e6f4f4' : 'transparent',
+            borderLeft: isToday
+              ? '3px solid #0d6e6e'
+              : '3px solid transparent',
           }}>
-            <span style={{
-              color: isToday ? '#0d6e6e' : '#374151',
-              fontWeight: isToday ? 700 : 500,
-              fontSize: 14,
-              minWidth: 90,
+            {/* Day column */}
+            <div style={{
+              minWidth: 110,
               flexShrink: 0,
+              paddingTop: 1,
             }}>
-              {isToday ? '▶ ' : ''}{day}
-            </span>
-            <span style={{
-              color: isClosed ? '#dc2626' : isToday ? '#0d6e6e' : '#4b5563',
-              fontWeight: isToday ? 600 : 400,
-              fontSize: 14,
-              textAlign: 'right',
-              lineHeight: 1.5,
-            }}>
-              {time}
-            </span>
+              <span style={{
+                fontSize: 14,
+                fontWeight: isToday ? 700 : 500,
+                color: isToday ? '#0d6e6e' : '#374151',
+              }}>
+                {isToday ? '▶ ' : ''}{day}
+              </span>
+            </div>
+
+            {/* Times column */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              {isClosed ? (
+                <span style={{ fontSize: 14, color: '#dc2626' }}>Closed</span>
+              ) : (
+                slots.map((slot, j) => (
+                  <span key={j} style={{
+                    fontSize: 14,
+                    color: isToday ? '#0d6e6e' : '#4b5563',
+                    fontWeight: isToday ? 600 : 400,
+                    lineHeight: 1.5,
+                  }}>
+                    {slot}
+                  </span>
+                ))
+              )}
+            </div>
           </div>
         );
       })}
+
+      {/* Live indicator */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: 6,
         marginTop: 10,
+        paddingLeft: 14,
         fontSize: 11,
         color: '#6b7280',
       }}>
