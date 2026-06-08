@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const API_KEY  = 'AIzaSyASVHw_gAqiYLPrdNJqR_qDewxEqwoRXNw';
-const PLACE_ID = 'ChIJF4CXSgC5BTSRHEvEfv0fR1c';
+const PLACE_ID = 'ChIJF4CXSgC5BTsRHEvEfv0fR1c';
 
 export async function GET() {
   try {
