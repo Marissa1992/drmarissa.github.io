@@ -25,6 +25,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { DoctorProfileModal } from '@/components/doctor-profile-modal';
+import ClinicHours from '@/components/ClinicHours';
 
 const CALENDAR_LINK = "https://calendar.app.google/VuEjqb3kxG4P2peT6";
 const WHATSAPP_LINK = "https://wa.me/919447711755";
@@ -551,11 +552,8 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
                     <Clock size={24} />
                   </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-slate-900 mb-1">Clinic Hours</h4>
-                    <p className="text-slate-600">By Appointment</p>
-                    <p className="text-sm text-slate-500 mt-1">Please book in advance to ensure an unhurried consultation.</p>
-                  </div>
+                  <h4 className="font-heading font-bold text-slate-900 mb-1">Clinic Hours</h4>
+   <ClinicHours />
                 </div>
               </div>
             </div>
