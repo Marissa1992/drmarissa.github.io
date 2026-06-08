@@ -8,10 +8,7 @@ export default function ClinicHours() {
   useEffect(() => {
     async function fetchHours() {
       try {
-        const res = await fetch(
-  `https://places.googleapis.com/v1/places/ChIJF4CXSgC5BTSRHEvEfv0fR1c?key=AIzaSyASVHw_gAqiYLPrdNJqR_qDewxEqwoRXNw&fields=regularOpeningHours`
-);
-         
+        const res = await fetch('/api/clinic-hours');
         const { regularOpeningHours } = await res.json();
         const lines = regularOpeningHours?.weekdayDescriptions || [];
         setHours([...lines.slice(6), ...lines.slice(0, 6)]);
