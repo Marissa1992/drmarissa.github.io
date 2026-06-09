@@ -11,7 +11,7 @@ export default function StructuredData() {
         "url": "https://drmarissa.netlify.app",
         "telephone": "+919447711755",
         "priceRange": "₹₹",
-        "image": "https://drmarissa.netlify.app/og-image.jpg", // update if you have one
+        "image": "https://drmarissa.netlify.app/og-image.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "RG-85 Sreenagar Lane, Pazhaya Rd",
@@ -22,8 +22,8 @@ export default function StructuredData() {
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 8.538797,   // ← replace with exact coords from Google Maps
-          "longitude": 76.926977  // ← replace with exact coords from Google Maps
+          "latitude": 8.538797,
+          "longitude": 76.926977
         },
         "hasMap": "https://maps.app.goo.gl/Ats37LvFxDFWRL3q7",
         "sameAs": [
@@ -32,34 +32,13 @@ export default function StructuredData() {
         ],
         "medicalSpecialty": "http://schema.org/Otolaryngology",
         "availableService": [
-          {
-            "@type": "MedicalTherapy",
-            "name": "Ear Wax Removal (Microsuction)"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Vertigo Management & Vestibular Rehabilitation"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Sinusitis Treatment"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Nasal Obstruction & Allergy Care"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Throat Infection & Tonsillitis Treatment"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Snoring Treatment"
-          },
-          {
-            "@type": "MedicalTherapy",
-            "name": "Paediatric ENT Care"
-          }
+          { "@type": "MedicalTherapy", "name": "Ear Wax Removal (Microsuction)" },
+          { "@type": "MedicalTherapy", "name": "Vertigo Management" },
+          { "@type": "MedicalTherapy", "name": "Sinusitis Treatment" },
+          { "@type": "MedicalTherapy", "name": "Nasal Obstruction & Allergy Care" },
+          { "@type": "MedicalTherapy", "name": "Throat Infection & Tonsillitis Treatment" },
+          { "@type": "MedicalTherapy", "name": "Snoring Treatment" },
+          { "@type": "MedicalTherapy", "name": "Paediatric ENT Care" }
         ],
         "currenciesAccepted": "INR",
         "paymentAccepted": "Cash, UPI",
@@ -77,8 +56,8 @@ export default function StructuredData() {
         "@type": "IndividualPhysician",
         "@id": "https://drmarissa.netlify.app/#doctor",
         "name": "Dr. Marissa Mathew",
-        "jobTitle": "ENT Specialist",
-        "worksFor": {
+        "description": "ENT Specialist at Dr. Marissa's ENT Clinic, Thiruvananthapuram",
+        "practicesAt": {
           "@id": "https://drmarissa.netlify.app/#clinic"
         },
         "url": "https://drmarissa.netlify.app/#about"
@@ -102,4 +81,5 @@ export default function StructuredData() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
   );
+}  );
 }
