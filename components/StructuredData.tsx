@@ -81,5 +81,4 @@ export default function StructuredData() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
   );
-}  );
 }
