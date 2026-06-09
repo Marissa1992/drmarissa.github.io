@@ -32,11 +32,7 @@ export default function StructuredData() {
           "https://maps.app.goo.gl/WXWw2kbxLamryyxd9",
           "https://wa.me/919447711755"
         ],
-        "medicalSpecialty": [
-          "Otolaryngology",
-          "Audiology",
-          "Rhinology"
-        ],
+        "medicalSpecialty": "http://schema.org/Otolaryngology",
         "availableService": [
           {
             "@type": "MedicalTherapy",
@@ -84,7 +80,6 @@ export default function StructuredData() {
         "@id": "https://drmarissa.netlify.app/#doctor",
         "name": "Dr. Marissa Mathew",
         "jobTitle": "ENT Specialist",
-        "medicalSpecialty": "Otolaryngology",
         "worksFor": {
           "@id": "https://drmarissa.netlify.app/#clinic"
         },
