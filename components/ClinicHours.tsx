@@ -1,6 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+function fixAmPm(slot: string): string {
+  const parts = slot.split('–').map(s => s.trim());
+  if (parts.length !== 2) return slot;
+  const [start, end] = parts;
+  const hasAmPm = (t: string) => /\b(AM|PM)\b/i.test(t);
+  const getAmPm = (t: string) => t.match(/\b(AM|PM)\b/i)?.[0] ?? '';
+  const fixedStart = !hasAmPm(start) && hasAmPm(end)
+    ? `${start} ${getAmPm(end)}`
+    : start;
+  const fixedEnd = hasAmPm(start) && !hasAmPm(end)
+    ? `${end} ${getAmPm(start)}`
+    : end;
+  return `${fixedStart} – ${fixedEnd}`;
+}
+
 export default function ClinicHours() {
   const [hours, setHours] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +51,7 @@ export default function ClinicHours() {
         const colonIdx = line.indexOf(':');
         const day = line.substring(0, colonIdx).trim();
         const timePart = line.substring(colonIdx + 1).trim();
-        const slots = timePart.split(',').map(s => s.trim());
+        const slots = timePart.split(',').map(s => fixAmPm(s.trim()));
         const isToday = i === todayIdx;
         const isClosed = timePart.toLowerCase().includes('closed');
 
@@ -51,12 +66,7 @@ export default function ClinicHours() {
               ? '3px solid #0d6e6e'
               : '3px solid transparent',
           }}>
-            {/* Day column */}
-            <div style={{
-              minWidth: 110,
-              flexShrink: 0,
-              paddingTop: 1,
-            }}>
+            <div style={{ minWidth: 110, flexShrink: 0, paddingTop: 1 }}>
               <span style={{
                 fontSize: 14,
                 fontWeight: isToday ? 700 : 500,
@@ -65,8 +75,6 @@ export default function ClinicHours() {
                 {isToday ? '▶ ' : ''}{day}
               </span>
             </div>
-
-            {/* Times column */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               {isClosed ? (
                 <span style={{ fontSize: 14, color: '#dc2626' }}>Closed</span>
@@ -86,8 +94,6 @@ export default function ClinicHours() {
           </div>
         );
       })}
-
-      {/* Live indicator */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
