@@ -30,7 +30,7 @@ export default function StructuredData() {
           "https://maps.app.goo.gl/WXWw2kbxLamryyxd9",
           "https://wa.me/919447711755"
         ],
-        "medicalSpecialty": "http://schema.org/Otolaryngology",
+        "medicalSpecialty": "http://schema.org/Otolaryngologic",
         "availableService": [
           { "@type": "MedicalTherapy", "name": "Ear Wax Removal (Microsuction)" },
           { "@type": "MedicalTherapy", "name": "Vertigo Management" },
