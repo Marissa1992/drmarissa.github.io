@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import Script from 'next/script';
+import StructuredData from '@/components/StructuredData';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -15,6 +16,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
       <head>
+        <StructuredData />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-7EV3K9D7ZQ"
           strategy="afterInteractive"
