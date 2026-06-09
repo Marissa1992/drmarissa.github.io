@@ -5,7 +5,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["MedicalBusiness", "Physician"],
+        "@type": ["MedicalClinic", "MedicalBusiness"],
         "@id": "https://drmarissa.netlify.app/#clinic",
         "name": "Dr. Marissa's ENT Clinic",
         "alternateName": "Dr. Marissa ENT",
@@ -76,7 +76,7 @@ export default function StructuredData() {
         }
       },
       {
-        "@type": "Person",
+        "@type": "IndividualPhysician",
         "@id": "https://drmarissa.netlify.app/#doctor",
         "name": "Dr. Marissa Mathew",
         "jobTitle": "ENT Specialist",
