@@ -1,5 +1,3 @@
-// components/StructuredData.tsx
-
 export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
