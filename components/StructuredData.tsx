@@ -71,8 +71,93 @@ export default function StructuredData() {
         "publisher": {
           "@id": "https://drmarissa.netlify.app/#clinic"
         }
-      }
-    ]
+        ,{
+        "@type": "FAQPage",
+        "@id": "https://drmarissa.netlify.app/#faq",
+        "url": "https://drmarissa.netlify.app/#faq",
+        "name": "ENT Clinic FAQ - Dr. Marissa's ENT Clinic",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What should I bring to my first appointment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Please bring any previous medical records, hearing tests, imaging (X-rays or CT scans), and a list of your current medications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you treat children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we provide comprehensive paediatric ENT care, addressing common childhood issues like recurrent ear infections, tonsillitis, and breathing difficulties."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is ear wax removal performed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We primarily use microsuction, a very safe, gentle, and effective way to remove ear wax without using water syringes, reducing the risk of infection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the common signs of vertigo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Symptoms include a spinning sensation, loss of balance, dizziness, nausea, and ringing in the ears. If you experience these symptoms, an ENT evaluation is highly recommended."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you treat ENT emergencies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Emergencies such as airway-obstructing foreign bodies, severe nasal bleeding, or accident-related ENT trauma are not treated here. Please visit the nearest hospital casualty department immediately for such critical care."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book an appointment at Dr. Marissa's ENT Clinic?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book an appointment online at https://drmarissa.netlify.app or call and WhatsApp us directly at +91 94477 11755."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is Dr. Marissa's ENT Clinic located?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We are located at RG-85 Sreenagar Lane, Pazhaya Rd, Pongumoodu, Thiruvananthapuram, Kerala 695011. Get directions on Google Maps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What ENT conditions do you treat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We treat a wide range of ENT conditions including ear wax blockage, vertigo, sinusitis, nasal obstruction, allergies, snoring, throat infections, tonsillitis, hoarseness of voice, and paediatric ENT problems."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is microsuction ear cleaning safe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, microsuction is considered the safest and most effective method for ear wax removal. It does not use water, so it avoids the risk of infection associated with ear syringing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you accept walk-in patients?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We recommend booking an appointment in advance to ensure an unhurried, thorough consultation. You can book online or contact us by phone or WhatsApp at +91 94477 11755."
+            }
+          }
+        ]
   };
 
   return (
