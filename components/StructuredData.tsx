@@ -71,7 +71,8 @@ export default function StructuredData() {
         "publisher": {
           "@id": "https://drmarissa.netlify.app/#clinic"
         }
-        ,{
+      },
+      {
         "@type": "FAQPage",
         "@id": "https://drmarissa.netlify.app/#faq",
         "url": "https://drmarissa.netlify.app/#faq",
@@ -158,6 +159,8 @@ export default function StructuredData() {
             }
           }
         ]
+      }
+    ]
   };
 
   return (
