@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Dr. Marissa's ENT Clinic",
   description: 'Expert ENT Care with a Personal Touch in Thiruvananthapuram, Kerala.',
   verification: {
-    google: "0ovaMB78Cu53Oc8xBMKXLcoSy05vIfWykIxE_u_050g",
+    google: "mVD2KuLwsG303NtEhAMeNK1HNrQR1ke8QOx0ZkHGecY",
   },
 };
 
