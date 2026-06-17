@@ -13,6 +13,22 @@ export const metadata: Metadata = {
   verification: {
     google: "mVD2KuLwsG303NtEhAMeNK1HNrQR1ke8QOx0ZkHGecY",
   },
+  openGraph: {
+    title: "Dr. Marissa's ENT Clinic — Thiruvananthapuram",
+    description: 'Expert ear, nose, throat, vertigo and sinus care in Thiruvananthapuram, Kerala. Book your appointment today.',
+    url: 'https://drmarissa.netlify.app',
+    siteName: "Dr. Marissa's ENT Clinic",
+    images: [
+      {
+        url: 'https://drmarissa.netlify.app/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: "Dr. Marissa's ENT Clinic Thiruvananthapuram",
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
