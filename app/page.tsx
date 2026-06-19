@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
+import Link from 'next/link';
 import { 
   Phone, 
   Calendar, 
@@ -303,33 +304,37 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {[
               {
-                title: "Ear Care",
-                desc: "Safe microsuction ear cleaning, wax removal, foreign body removal, and ear block management performed with precision and patient comfort.",
-                icon: Stethoscope,
-                color: "text-blue-600",
-                bg: "bg-blue-50"
-              },
-              {
-                title: "Vertigo Management",
-                desc: "Specialized vestibular rehabilitation, corrective maneuvers, and medications designed to restore balance and improve quality of life.",
-                icon: Activity,
-                color: "text-teal-600",
-                bg: "bg-teal-50"
-              },
-              {
-                title: "Nasal & Sinus Care",
-                desc: "Comprehensive treatment for sinusitis, nasal obstruction, nasal discharge, allergies, and snoring.",
-                icon: Wind,
-                color: "text-emerald-600",
-                bg: "bg-emerald-50"
-              },
-              {
-                title: "Throat Care",
-                desc: "Expert evaluation and treatment for throat pain, discomfort, infections, and hoarseness of voice.",
-                icon: Smile,
-                color: "text-indigo-600",
-                bg: "bg-indigo-50"
-              }
+          title: "Ear Care",
+          desc: "Safe microsuction ear cleaning, wax removal, foreign body removal, and ear block management performed with precision and patient comfort.",
+          icon: Stethoscope,
+          color: "text-blue-600",
+          bg: "bg-blue-50",
+          href: "/services/ear-wax-removal"
+        },
+        {
+          title: "Vertigo Management",
+          desc: "Specialized vestibular rehabilitation, corrective maneuvers, and medications designed to restore balance and improve quality of life.",
+          icon: Activity,
+          color: "text-teal-600",
+          bg: "bg-teal-50",
+          href: "/services/vertigo"
+        },
+        {
+          title: "Nasal & Sinus Care",
+          desc: "Comprehensive treatment for sinusitis, nasal obstruction, nasal discharge, allergies, and snoring.",
+          icon: Wind,
+          color: "text-emerald-600",
+          bg: "bg-emerald-50",
+          href: "/services/sinusitis"
+        },
+        {
+          title: "Throat Care",
+          desc: "Expert evaluation and treatment for throat pain, discomfort, infections, and hoarseness of voice.",
+          icon: Smile,
+          color: "text-indigo-600",
+          bg: "bg-indigo-50",
+          href: "/services/tonsillitis"
+        }
             ].map((service, idx) => (
               <motion.div 
                 key={idx}
@@ -344,6 +349,9 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3">{service.title}</h3>
                 <p className="text-slate-600 leading-relaxed">{service.desc}</p>
+              <Link href={service.href} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-teal-700 hover:underline">
+                Learn More →
+              </Link>
               </motion.div>
             ))}
           </div>
