@@ -227,10 +227,11 @@ export default function Home() {
             <div className="order-2 lg:order-1 relative">
               <div className="aspect-[4/5] md:aspect-square lg:aspect-[4/5] bg-slate-100 rounded-3xl overflow-hidden relative">
                 {/* Doctor examining patient's ear */}
-                <Image 
-                  src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=2000" 
-                  alt="Doctor examining patient's ear with an otoscope" 
+                <Image
+                  src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  alt="Doctor examining patient's ear with an otoscope"
                   fill
+                  sizes="(min-width: 1024px) 600px, 100vw"
                   className="object-cover object-center opacity-95 mix-blend-multiply"
                   referrerPolicy="no-referrer"
                 />
@@ -313,7 +314,7 @@ export default function Home() {
         },
         {
           title: "Vertigo Management",
-          desc: "Specialized vestibular rehabilitation, corrective maneuvers, and medications designed to restore balance and improve quality of life.",
+          desc: "Specialized vestibular rehabilitation, corrective manoeuvres, and medications designed to restore balance and improve quality of life.",
           icon: Activity,
           color: "text-teal-600",
           bg: "bg-teal-50",
@@ -422,7 +423,7 @@ export default function Home() {
                   author: "Arjun N."
                 },
                 {
-                  text: "I had a sudden severe episode of peripheral vertigo and was completely disoriented. Dr. Marissa was very reassuring and handled my case with great expertise. The maneuvers she performed provided almost immediate relief.",
+                  text: "I had a sudden severe episode of peripheral vertigo and was completely disoriented. Dr. Marissa was very reassuring and handled my case with great expertise. The manoeuvres she performed provided almost immediate relief.",
                   author: "Sreelekshmi S."
                 },
                 {
@@ -498,7 +499,7 @@ export default function Home() {
               { q: "What should I bring to my first appointment?", a: "Please bring any previous medical records, hearing tests, imaging (X-rays/CT scans), and a list of your current medications." },
               { q: "Do you treat children?", a: "Yes, we provide comprehensive ENT pediatric care, addressing common childhood issues like recurrent ear infections, tonsillitis, and breathing difficulties." },
               { q: "How is ear wax removal performed?", a: "We primarily use microsuction, a very safe, gentle, and effective way to remove ear wax without using water syringes, reducing the risk of infection." },
-              { q: "What are the common signs of vertigo?", a: "Symptoms include a spinning sensation, loss of balance, dizziness, nausea, and ringing in the ears. If you experience these securely, an evaluation is highly recommended." },
+              { q: "What are the common signs of vertigo?", a: "Symptoms include a spinning sensation, loss of balance, dizziness, nausea, and ringing in the ears. If you experience these symptoms, an ENT evaluation is highly recommended." },
               { q: "Do you treat ENT emergencies?", a: "Emergencies such as airway-obstructing foreign bodies, severe nasal bleeding, or accident-related ENT trauma are not treated here, as they may require emergency imaging or life-saving interventions. Please visit the nearest hospital casualty department immediately for such critical care." },
             ].map((faq, idx) => (
               <details key={idx} className="group bg-white rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
