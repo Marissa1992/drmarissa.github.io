@@ -97,7 +97,15 @@ export default function EarWaxRemovalPage() {
                 href="tel:+919447711755"
                 className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600 transition-colors"
               >
-                Call / WhatsApp
+                Call Now
+              </a>
+              <a
+                href="https://wa.me/919447711755"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-700 transition-colors"
+              >
+                WhatsApp
               </a>
             </div>
           </div>
