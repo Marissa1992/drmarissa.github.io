@@ -23,7 +23,8 @@ import {
   Timer,
   Microscope,
   Sofa,
-  AlertTriangle
+  AlertTriangle,
+  MessageCircle
 } from 'lucide-react';
 import { DoctorProfileModal } from '@/components/doctor-profile-modal';
 import ClinicHours from '@/components/ClinicHours';
@@ -202,12 +203,21 @@ export default function Home() {
                 <Calendar size={20} />
                 Book Appointment
               </a>
-              <a 
+              <a
                 href={PHONE_LINK}
                 className="inline-flex justify-center items-center gap-2 bg-white text-slate-700 px-8 py-4 rounded-xl font-medium text-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all"
               >
                 <Phone size={20} />
-                Call / WhatsApp
+                Call Now
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex justify-center items-center gap-2 bg-green-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-green-700 transition-all hover:shadow-lg hover:-translate-y-1"
+              >
+                <MessageCircle size={20} />
+                WhatsApp
               </a>
             </motion.div>
           </motion.div>
