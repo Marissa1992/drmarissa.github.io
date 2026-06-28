@@ -84,7 +84,7 @@ export default function EarWaxRemovalPage() {
             </h1>
             <p className="text-teal-100 text-lg max-w-xl mx-auto">
               Safe, painless microsuction — the gold standard for ear wax removal. 
-              No water, no syringing. Clear blocked ears in a single visit.
+              No water, no syringing. Clear blocked ears in just one or two visits. To guarantee a pain-free experience, hardened wax may require softening prior to removal.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
               <a
@@ -120,7 +120,7 @@ export default function EarWaxRemovalPage() {
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-4">
               Microsuction is the safest and most effective method for removing ear wax. 
-              Using a fine suction device under a microscope or loupes, the doctor gently 
+              Using a fine suction device, the doctor gently
               removes wax directly from the ear canal — without any water or syringing.
             </p>
             <p className="text-slate-600 leading-relaxed mb-4">
