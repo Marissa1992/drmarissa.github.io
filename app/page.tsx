@@ -26,9 +26,13 @@ import {
   AlertTriangle,
   MessageCircle
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { DoctorProfileModal } from '@/components/doctor-profile-modal';
 import ClinicHours from '@/components/ClinicHours';
-import SerahChat from '@/components/SerahChat';
+
+// The Serah chat is a floating widget that isn't needed for first paint, so
+// load it lazily to keep it off the initial JavaScript critical path.
+const SerahChat = dynamic(() => import('@/components/SerahChat'), { ssr: false });
 
 const CALENDAR_LINK = "https://calendar.app.google/VuEjqb3kxG4P2peT6";
 const WHATSAPP_LINK = "https://wa.me/919447711755";
