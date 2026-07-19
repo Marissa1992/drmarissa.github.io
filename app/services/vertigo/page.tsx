@@ -32,10 +32,6 @@ const structuredData = {
     alternateName: ['BPPV', 'Benign Paroxysmal Positional Vertigo', 'Vestibular Disorder'],
     associatedAnatomy: { '@type': 'AnatomicalStructure', name: 'Inner Ear' },
   },
-  mainContentOfPage: {
-    '@type': 'MedicalTherapy',
-    name: 'Vestibular Rehabilitation and Epley Manoeuvre',
-  },
   author: {
     '@type': 'IndividualPhysician',
     name: 'Dr. Marissa Mathew',
