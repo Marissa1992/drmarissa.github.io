@@ -32,10 +32,6 @@ const structuredData = {
     alternateName: ['Rhinosinusitis', 'Chronic Sinusitis', 'Sinus Infection', 'Nasal Congestion'],
     associatedAnatomy: { '@type': 'AnatomicalStructure', name: 'Paranasal Sinuses' },
   },
-  mainContentOfPage: {
-    '@type': 'MedicalTherapy',
-    name: 'Sinusitis and Nasal Allergy Treatment',
-  },
   author: {
     '@type': 'IndividualPhysician',
     name: 'Dr. Marissa Mathew',
