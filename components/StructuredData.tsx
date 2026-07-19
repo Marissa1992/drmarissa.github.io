@@ -159,6 +159,13 @@ export default function StructuredData() {
             }
           }
         ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://drmarissa.netlify.app/#organization",
+        "name": "Dr. Marissa's ENT Clinic",
+        "url": "https://drmarissa.netlify.app",
+        "logo": "https://drmarissa.netlify.app/logo.png"
       }
     ]
   };
