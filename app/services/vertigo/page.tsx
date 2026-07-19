@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 
 const structuredData = {
   '@context': 'https://schema.org',
+  '@graph': [
+    {
   '@type': 'MedicalWebPage',
   name: 'Vertigo Treatment — Dr. Marissa\'s ENT Clinic',
   url: 'https://drmarissa.netlify.app/services/vertigo',
@@ -38,7 +40,17 @@ const structuredData = {
     '@type': 'IndividualPhysician',
     name: 'Dr. Marissa Mathew',
     url: 'https://drmarissa.netlify.app/#about',
-  },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://drmarissa.netlify.app' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://drmarissa.netlify.app/#services' },
+        { '@type': 'ListItem', position: 3, name: 'Vertigo Treatment', item: 'https://drmarissa.netlify.app/services/vertigo' },
+      ],
+    },
+  ],
 };
 
 export default function VertigoPage() {
