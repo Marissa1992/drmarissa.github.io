@@ -32,10 +32,6 @@ const structuredData = {
     alternateName: ['Throat Infection', 'Sore Throat', 'Strep Throat', 'Pharyngitis'],
     associatedAnatomy: { '@type': 'AnatomicalStructure', name: 'Tonsils and Throat' },
   },
-  mainContentOfPage: {
-    '@type': 'MedicalTherapy',
-    name: 'Tonsillitis and Throat Infection Treatment',
-  },
   author: {
     '@type': 'IndividualPhysician',
     name: 'Dr. Marissa Mathew',
