@@ -32,10 +32,6 @@ const structuredData = {
     alternateName: ['Cerumen Impaction', 'Ear Block', 'Ear Wax Build-up'],
     associatedAnatomy: { '@type': 'AnatomicalStructure', name: 'Ear Canal' },
   },
-  mainContentOfPage: {
-    '@type': 'MedicalTherapy',
-    name: 'Microsuction Ear Wax Removal',
-  },
   author: {
     '@type': 'IndividualPhysician',
     name: 'Dr. Marissa Mathew',
