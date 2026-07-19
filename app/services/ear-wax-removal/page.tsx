@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 
 const structuredData = {
   '@context': 'https://schema.org',
+  '@graph': [
+    {
   '@type': 'MedicalWebPage',
   name: 'Ear Wax Removal (Microsuction) — Dr. Marissa\'s ENT Clinic',
   url: 'https://drmarissa.netlify.app/services/ear-wax-removal',
@@ -39,6 +41,16 @@ const structuredData = {
     name: 'Dr. Marissa Mathew',
     url: 'https://drmarissa.netlify.app/#about',
   },
+ }, 
+ {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://drmarissa.netlify.app' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://drmarissa.netlify.app/#services' },
+        { '@type': 'ListItem', position: 3, name: 'Ear Wax Removal', item: 'https://drmarissa.netlify.app/services/ear-wax-removal' },
+      ],
+    },
+  ],
 };
 
 export default function EarWaxRemovalPage() {
