@@ -281,6 +281,9 @@ export default function TonsillitisPage() {
                 </div>
               ))}
             </div>
+            <p className="text-slate-500 text-sm mt-6">
+              Recurrent throat infections are sometimes linked to nasal drainage issues — read about our <Link href="/services/sinusitis" className="text-teal-700 underline">sinusitis treatment</Link> if you also have nasal congestion.
+            </p>
           </div>
         </section>
 
