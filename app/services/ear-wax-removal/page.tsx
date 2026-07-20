@@ -229,6 +229,9 @@ export default function EarWaxRemovalPage() {
                 </div>
               ))}
             </div>
+            <p className="text-slate-500 text-sm mt-6">
+              If blocked ears come with a spinning sensation, it could be related to <Link href="/services/vertigo" className="text-teal-700 underline">vertigo</Link> rather than wax alone.
+            </p>
           </div>
         </section>
 
