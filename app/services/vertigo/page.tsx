@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: 'https://drmarissa.netlify.app/services/vertigo',
     siteName: "Dr. Marissa's ENT Clinic",
     locale: 'en_IN',
-    tpype: 'website',
+    type: 'website',
   },
 };
 
