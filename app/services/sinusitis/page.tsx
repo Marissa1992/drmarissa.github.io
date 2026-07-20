@@ -252,6 +252,9 @@ export default function SinusitisPage() {
                 </div>
               ))}
             </div>
+            <p className="text-slate-500 text-sm mt-6">
+              Chronic sinus congestion can sometimes trigger throat irritation — see our <Link href="/services/tonsillitis" className="text-teal-700 underline">throat and tonsillitis care page</Link> if you also have a sore throat.
+            </p>
           </div>
         </section>
 
