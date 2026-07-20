@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: 'https://drmarissa.netlify.app/services/vertigo',
     siteName: "Dr. Marissa's ENT Clinic",
     locale: 'en_IN',
-    type: 'website',
+    tpype: 'website',
   },
 };
 
@@ -182,7 +182,7 @@ export default function VertigoPage() {
             <div className="space-y-4">
               {[
                 { step: '01', title: 'Detailed Assessment', desc: 'A thorough history and physical examination including Dix-Hallpike and other vestibular tests to pinpoint the exact type and cause of your vertigo.' },
-                { step: '02', title: 'Epley Manoeuvre', desc: 'A highly effective, in-clinic repositioning procedure for BPPV that moves dislodged crystals back into position — often providing immediate relief.' },
+                { step: '02', title: 'Epley\'s Maneuver', desc: 'A highly effective, in-clinic repositioning procedure for BPPV that moves dislodged crystals back into position — often providing immediate relief.' },
                 { step: '03', title: 'Vestibular Rehabilitation', desc: 'A tailored exercise programme to retrain your brain and inner ear to compensate for imbalance, improving stability and reducing dizziness.' },
                 { step: '04', title: 'Medication Management', desc: 'Appropriate medications to control acute symptoms such as nausea, dizziness, and inflammation when required.' },
               ].map((t) => (
@@ -207,7 +207,7 @@ export default function VertigoPage() {
             </h2>
             <div className="space-y-5">
               {[
-                { q: 'Can vertigo be permanently cured?', a: 'BPPV, the most common type, can often be resolved in one or two clinic visits with the Epley manoeuvre. Other types may require ongoing management, but most patients achieve significant improvement with proper treatment.' },
+                { q: 'Can vertigo be permanently cured?', a: 'BPPV, the most common type, can often be resolved in one or two clinic visits with the Epley\'s Maneuver. Other types may require ongoing management, but most patients achieve significant improvement with proper treatment.' },
                 { q: 'Is vertigo dangerous?', a: 'Vertigo itself is rarely dangerous, but it increases the risk of falls and accidents. Sudden-onset vertigo with severe headache, double vision, or weakness may indicate a more serious condition — seek emergency care in such cases.' },
                 { q: 'How long does a vertigo episode last?', a: 'BPPV episodes typically last seconds to minutes. Meniere\'s disease episodes can last 20 minutes to several hours. If you have prolonged or frequent episodes, an ENT evaluation is essential.' },
                 { q: 'Do I need any tests for vertigo?', a: 'Most vertigo can be diagnosed through a physical examination. In some cases, hearing tests or imaging may be recommended. Dr. Marissa will advise what is needed based on your specific symptoms.' },
@@ -219,6 +219,9 @@ export default function VertigoPage() {
                 </div>
               ))}
             </div>
+            <p className="text-slate-500 text-sm mt-6">
+              Vertigo sometimes occurs alongside <Link href="/services/ear-wax-removal" className="text-teal-700 underline">ear blockage or wax build-up</Link> — if you also notice muffled hearing, that may be worth checking too.
+            </p>
           </div>
         </section>
 
