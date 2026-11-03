@@ -43,3 +43,4 @@ export function trackBookingClick(location: string = 'general'): void {
     location,
   });
 }
+

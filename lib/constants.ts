@@ -99,3 +99,4 @@ export function getConditionWhatsAppUrl(conditionName: string): string {
   const text = encodeURIComponent(`Hello Doctor, I would like to book an appointment for ${conditionName}.`);
   return `https://wa.me/919447711755?text=${text}`;
 }
+

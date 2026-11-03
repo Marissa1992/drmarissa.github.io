@@ -494,3 +494,4 @@ export function getServiceBySlug(slug: string): ServiceItem | undefined {
 export function getAllServiceSlugs(): string[] {
   return SERVICES.map((s) => s.slug);
 }
+
