@@ -3,9 +3,7 @@
 import { useState, useRef, useEffect, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, Send, Calendar, Phone } from 'lucide-react';
-
-const CALENDAR_LINK = 'https://calendar.app.google/AXGv6YPWdrFU2sNY8';
-const WHATSAPP_LINK = 'https://wa.me/919447711755';
+import { CLINIC } from '@/lib/constants';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -117,8 +115,7 @@ export default function SerahChat() {
         ...m,
         {
           role: 'assistant',
-          content:
-            "I'm sorry, I couldn't reach the clinic assistant just now. Please call or WhatsApp us at +91 94477 11755 and we'll be happy to help.",
+          content: `I'm sorry, I couldn't reach the clinic assistant just now. Please call us at ${CLINIC.phone.display} or message on WhatsApp at ${CLINIC.whatsapp.display} and we'll be happy to help.`,
         },
       ]);
     } finally {
@@ -140,10 +137,10 @@ export default function SerahChat() {
         transition={{ delay: 0.6, type: 'spring', stiffness: 200, damping: 18 }}
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close chat with Serah' : 'Chat with Serah'}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-teal-600 px-5 py-4 text-white shadow-lg transition-all hover:bg-teal-700 hover:shadow-xl"
+        className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-30 flex items-center gap-2 rounded-full bg-teal-600 px-4 py-3 sm:px-5 sm:py-4 text-white shadow-lg transition-all hover:bg-teal-700 hover:shadow-xl"
       >
-        {open ? <X size={24} /> : <MessageCircle size={24} />}
-        {!open && <span className="hidden sm:inline font-medium">Ask Serah</span>}
+        {open ? <X size={22} /> : <MessageCircle size={22} />}
+        {!open && <span className="hidden sm:inline font-medium text-sm">Ask Serah</span>}
       </motion.button>
 
       <AnimatePresence>
@@ -153,18 +150,18 @@ export default function SerahChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-            className="fixed bottom-24 right-4 z-50 flex h-[min(70vh,560px)] w-[calc(100vw-2rem)] max-w-[400px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl sm:right-6"
+            className="fixed bottom-36 sm:bottom-24 right-4 sm:right-6 z-40 flex h-[min(70vh,540px)] w-[calc(100vw-2rem)] max-w-[390px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl"
           >
             {/* Header */}
             <div className="flex items-center gap-3 bg-gradient-to-r from-teal-600 to-sky-600 px-5 py-4 text-white">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-lg font-heading font-bold">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-base font-heading font-bold">
                 S
               </div>
               <div className="leading-tight">
-                <p className="font-heading font-semibold">Serah</p>
+                <p className="font-heading font-semibold text-sm">Serah</p>
                 <p className="flex items-center gap-1.5 text-xs text-teal-50">
                   <span className="inline-block h-2 w-2 rounded-full bg-green-300" />
-                  Dr. Marissa&apos;s ENT Assistant
+                  Dr. Marissa&apos;s Assistant
                 </p>
               </div>
             </div>
@@ -202,14 +199,14 @@ export default function SerahChat() {
                 </div>
               )}
 
-              {/* Quick prompts (only before the first user message) */}
+              {/* Quick prompts */}
               {messages.length === 1 && !loading && (
                 <div className="space-y-2 pt-1">
                   {QUICK_PROMPTS.map((p) => (
                     <button
                       key={p}
                       onClick={() => sendMessage(p)}
-                      className="block w-full rounded-xl border border-teal-200 bg-white px-3 py-2 text-left text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+                      className="block w-full rounded-xl border border-teal-200 bg-white px-3 py-2 text-left text-xs sm:text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
                     >
                       {p}
                     </button>
@@ -221,20 +218,20 @@ export default function SerahChat() {
             {/* Quick actions */}
             <div className="flex gap-2 border-t border-slate-100 bg-white px-3 pt-2.5">
               <a
-                href={CALENDAR_LINK}
+                href={CLINIC.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-teal-50 px-2 py-1.5 text-xs font-medium text-teal-700 transition-colors hover:bg-teal-100"
               >
-                <Calendar size={14} /> Book
+                <Calendar size={13} /> Book Slot
               </a>
               <a
-                href={WHATSAPP_LINK}
+                href={CLINIC.whatsapp.chatUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-green-50 px-2 py-1.5 text-xs font-medium text-green-700 transition-colors hover:bg-green-100"
               >
-                <Phone size={14} /> WhatsApp
+                <Phone size={13} /> WhatsApp
               </a>
             </div>
 
@@ -245,15 +242,15 @@ export default function SerahChat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your message…"
-                className="flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-800 outline-none transition-colors focus:border-teal-400 focus:bg-white"
+                className="flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-800 outline-none transition-colors focus:border-teal-400 focus:bg-white"
               />
               <button
                 type="submit"
                 disabled={!input.trim() || loading}
                 aria-label="Send message"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white transition-colors hover:bg-teal-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white transition-colors hover:bg-teal-700 disabled:cursor-not-allowed disabled:bg-slate-300"
               >
-                <Send size={18} />
+                <Send size={16} />
               </button>
             </form>
           </motion.div>

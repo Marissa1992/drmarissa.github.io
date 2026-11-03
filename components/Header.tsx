@@ -20,11 +20,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -131,6 +126,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`text-xl font-heading font-semibold py-2 px-3 rounded-xl transition-colors ${
                     isActive
                       ? 'bg-teal-50 text-teal-800'
@@ -148,14 +144,20 @@ export default function Header() {
               href={CLINIC.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackBookingClick('mobile_menu')}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                trackBookingClick('mobile_menu');
+              }}
               className="bg-teal-600 text-center text-white py-3.5 rounded-xl font-medium w-full text-base flex items-center justify-center gap-2 shadow-sm"
             >
               <Calendar size={18} /> Book Appointment
             </a>
             <a
               href={CLINIC.phone.telLink}
-              onClick={() => trackCallClick('mobile_menu')}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                trackCallClick('mobile_menu');
+              }}
               className="bg-slate-100 text-center text-slate-800 py-3.5 rounded-xl font-medium w-full text-base flex items-center justify-center gap-2"
             >
               <Phone size={18} className="text-teal-700" /> Call {CLINIC.phone.display}
