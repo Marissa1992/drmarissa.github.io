@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ClinicHours from '@/components/ClinicHours';
+import { TrackedBookingLink, TrackedWhatsAppLink, TrackedCallLink } from '@/components/TrackedCTA';
 import { CLINIC, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -29,6 +30,14 @@ export const metadata: Metadata = {
     siteName: CLINIC.name,
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Dr. Marissa's ENT Clinic Location & Contact",
+      },
+    ],
   },
 };
 
@@ -103,23 +112,25 @@ export default function ContactPage() {
                   </h3>
                   <p className="text-slate-600 text-sm mb-1">
                     Voice calls:{' '}
-                    <a
+                    <TrackedCallLink
                       href={CLINIC.phone.telLink}
+                      trackingLocation="contact_page"
                       className="text-slate-900 font-semibold hover:text-teal-700"
                     >
                       {CLINIC.phone.display}
-                    </a>
+                    </TrackedCallLink>
                   </p>
                   <p className="text-slate-600 text-sm">
                     WhatsApp bookings:{' '}
-                    <a
+                    <TrackedWhatsAppLink
                       href={CLINIC.whatsapp.chatUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      trackingLocation="contact_page"
                       className="text-emerald-700 font-semibold hover:underline"
                     >
                       {CLINIC.whatsapp.display}
-                    </a>
+                    </TrackedWhatsAppLink>
                   </p>
                 </div>
               </div>
@@ -142,22 +153,24 @@ export default function ContactPage() {
 
               {/* Booking CTAs */}
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
-                <a
+                <TrackedBookingLink
                   href={CLINIC.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  trackingLocation="contact_page"
                   className="flex-1 bg-teal-600 text-white text-center py-3 rounded-xl font-medium text-sm hover:bg-teal-700 transition-colors inline-flex items-center justify-center gap-2 shadow-sm"
                 >
                   <Calendar size={16} /> Book Online
-                </a>
-                <a
+                </TrackedBookingLink>
+                <TrackedWhatsAppLink
                   href={CLINIC.whatsapp.chatUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  trackingLocation="contact_page"
                   className="flex-1 bg-green-600 text-white text-center py-3 rounded-xl font-medium text-sm hover:bg-green-700 transition-colors inline-flex items-center justify-center gap-2 shadow-sm"
                 >
                   <MessageCircle size={16} /> WhatsApp
-                </a>
+                </TrackedWhatsAppLink>
               </div>
             </div>
           </div>

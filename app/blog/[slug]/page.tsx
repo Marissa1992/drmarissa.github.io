@@ -12,6 +12,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { TrackedBookingLink, TrackedWhatsAppLink } from '@/components/TrackedCTA';
 import { BLOG_POSTS, getBlogPostBySlug, getAllBlogPostSlugs } from '@/data/blog-posts';
 import { CLINIC, SITE_URL } from '@/lib/constants';
 
@@ -52,11 +53,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       publishedTime: post.date,
       authors: [CLINIC.doctor],
+      images: [
+        {
+          url: `${SITE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.seoTitle,
       description: post.seoDescription,
+      images: [`${SITE_URL}/og-image.jpg`],
     },
   };
 }
@@ -342,24 +352,26 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-            <a
+            <TrackedBookingLink
               href={CLINIC.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`blog_article_${post.slug}`}
               className="inline-flex items-center justify-center gap-2 bg-white text-teal-800 font-semibold px-6 py-3 rounded-full hover:bg-teal-50 transition-all text-sm shadow-sm"
             >
               <CalendarCheck size={16} />
               <span>Book Appointment</span>
-            </a>
-            <a
+            </TrackedBookingLink>
+            <TrackedWhatsAppLink
               href={CLINIC.whatsapp.chatUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`blog_article_${post.slug}`}
               className="inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-700 transition-all text-sm shadow-sm"
             >
               <MessageCircle size={16} />
               <span>WhatsApp</span>
-            </a>
+            </TrackedWhatsAppLink>
           </div>
         </div>
       </article>

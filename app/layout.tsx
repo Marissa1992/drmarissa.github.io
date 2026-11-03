@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     template: '%s | Dr. Marissa Mathew',
   },
   description: 'Expert ENT Care with a Personal Touch in Thiruvananthapuram, Kerala.',
+  alternates: {
+    canonical: '/',
+  },
   verification: {
     google: CLINIC.analytics.googleVerification,
   },

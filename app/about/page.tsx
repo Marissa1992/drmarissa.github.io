@@ -13,6 +13,7 @@ import {
   AlertTriangle 
 } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { TrackedBookingLink, TrackedWhatsAppLink } from '@/components/TrackedCTA';
 import { CLINIC, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -30,6 +31,14 @@ export const metadata: Metadata = {
     siteName: CLINIC.name,
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Dr. Marissa Mathew - ENT Specialist',
+      },
+    ],
   },
 };
 
@@ -100,22 +109,24 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-6 pt-6 border-t border-slate-100 flex flex-col gap-2.5">
-                <a
+                <TrackedBookingLink
                   href={CLINIC.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  trackingLocation="about_sidebar"
                   className="bg-teal-600 text-white text-center py-3 rounded-xl font-medium text-sm hover:bg-teal-700 transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <Calendar size={16} /> Book Appointment
-                </a>
-                <a
+                </TrackedBookingLink>
+                <TrackedWhatsAppLink
                   href={CLINIC.whatsapp.chatUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  trackingLocation="about_sidebar"
                   className="bg-green-600 text-white text-center py-3 rounded-xl font-medium text-sm hover:bg-green-700 transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <MessageCircle size={16} /> WhatsApp Clinic
-                </a>
+                </TrackedWhatsAppLink>
               </div>
             </div>
           </div>

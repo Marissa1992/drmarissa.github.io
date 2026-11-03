@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import FAQSection from '@/components/FAQSection';
+import { TrackedBookingLink, TrackedWhatsAppLink, TrackedCallLink } from '@/components/TrackedCTA';
 import { SERVICES, getServiceBySlug, getAllServiceSlugs } from '@/data/services';
 import { CLINIC, SITE_URL, getConditionWhatsAppUrl } from '@/lib/constants';
 
@@ -50,11 +51,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: CLINIC.name,
       locale: 'en_IN',
       type: 'website',
+      images: [
+        {
+          url: `${SITE_URL}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: service.name,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: service.seoTitle,
       description: service.seoDescription,
+      images: [`${SITE_URL}/og-image.jpg`],
     },
   };
 }
@@ -127,31 +137,34 @@ export default async function ServicePage({ params }: PageProps) {
 
           {/* Action CTAs */}
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <a
+            <TrackedBookingLink
               href={CLINIC.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`service_hero_${service.slug}`}
               className="inline-flex items-center gap-2 bg-white text-teal-800 font-semibold px-6 py-3 rounded-full hover:bg-teal-50 transition-all shadow-sm"
             >
               <Calendar size={18} />
               <span>Book Appointment</span>
-            </a>
-            <a
+            </TrackedBookingLink>
+            <TrackedWhatsAppLink
               href={conditionWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`service_hero_${service.slug}`}
               className="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-700 transition-all shadow-sm"
             >
               <MessageCircle size={18} />
               <span>Book on WhatsApp</span>
-            </a>
-            <a
+            </TrackedWhatsAppLink>
+            <TrackedCallLink
               href={CLINIC.phone.telLink}
+              trackingLocation={`service_hero_${service.slug}`}
               className="inline-flex items-center gap-2 border border-teal-300/60 text-white font-semibold px-6 py-3 rounded-full hover:bg-teal-600/40 transition-all"
             >
               <Phone size={18} />
               <span>Call Clinic</span>
-            </a>
+            </TrackedCallLink>
           </div>
         </div>
       </section>
@@ -325,24 +338,26 @@ export default async function ServicePage({ params }: PageProps) {
             Convenient outpatient appointments at our clinic in Pongumoodu, Thiruvananthapuram. Serving families across Ulloor, Kowdiar, Pattom, and Kesavadasapuram.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a
+            <TrackedBookingLink
               href={CLINIC.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`service_footer_${service.slug}`}
               className="inline-flex items-center gap-2 bg-white text-teal-800 font-semibold px-8 py-3.5 rounded-full hover:bg-teal-50 transition-all shadow-md"
             >
               <Calendar size={18} />
               <span>Book Appointment</span>
-            </a>
-            <a
+            </TrackedBookingLink>
+            <TrackedWhatsAppLink
               href={conditionWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
+              trackingLocation={`service_footer_${service.slug}`}
               className="inline-flex items-center gap-2 bg-green-600 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-green-700 transition-all shadow-md"
             >
               <MessageCircle size={18} />
               <span>WhatsApp Us</span>
-            </a>
+            </TrackedWhatsAppLink>
           </div>
         </div>
       </section>

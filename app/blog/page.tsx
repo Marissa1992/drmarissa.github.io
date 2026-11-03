@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     siteName: CLINIC.name,
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Dr. Marissa's ENT Health Guides",
+      },
+    ],
   },
 };
 
