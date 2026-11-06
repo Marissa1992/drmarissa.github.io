@@ -2,8 +2,39 @@
 import { useEffect, useState } from 'react';
 import { CLINIC } from '@/lib/constants';
 
+const DAY_NAMES = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+function orderSundayFirst(lines: string[]): string[] {
+  const ordered: string[] = [];
+  const unmatched = [...lines];
+
+  for (const day of DAY_NAMES) {
+    const idx = unmatched.findIndex((line) => {
+      const colonIdx = line.indexOf(':');
+      const prefix = (colonIdx > -1 ? line.substring(0, colonIdx) : line)
+        .trim()
+        .toLowerCase();
+      return prefix.startsWith(day.toLowerCase());
+    });
+    if (idx !== -1) {
+      ordered.push(unmatched[idx]);
+      unmatched.splice(idx, 1);
+    }
+  }
+
+  return [...ordered, ...unmatched];
+}
+
 function fixAmPm(slot: string): string {
-  const parts = slot.split('–').map((s) => s.trim());
+  const parts = slot.split(/[\u2013\u2014–-]/).map((s) => s.trim());
   if (parts.length !== 2) return slot;
   const [start, end] = parts;
   const hasAmPm = (t: string) => /\b(AM|PM)\b/i.test(t);
@@ -24,11 +55,13 @@ export default function ClinicHours() {
   useEffect(() => {
     async function fetchHours() {
       try {
-        const res = await fetch('/api/clinic-hours');
-        const { regularOpeningHours } = await res.json();
-        const lines: string[] = regularOpeningHours?.weekdayDescriptions || [];
-        // Rearrange to start with Sunday or as delivered
-        setHours([...lines.slice(6), ...lines.slice(0, 6)]);
+        const res = await fetch('/api/clinic-hours', { cache: 'no-store' });
+        const data = await res.json();
+        const lines: string[] =
+          data?.currentOpeningHours?.weekdayDescriptions ||
+          data?.regularOpeningHours?.weekdayDescriptions ||
+          [];
+        setHours(orderSundayFirst(lines));
       } catch {
         setHours([]);
       } finally {
@@ -37,8 +70,6 @@ export default function ClinicHours() {
     }
     fetchHours();
   }, []);
-
-  const todayIdx = new Date().getDay();
 
   if (loading) {
     return (
@@ -57,15 +88,30 @@ export default function ClinicHours() {
     );
   }
 
+  const currentDayName = DAY_NAMES[new Date().getDay()].toLowerCase();
+
   return (
     <div className="w-full max-w-[380px] font-inherit text-xs sm:text-sm">
       {hours.map((line, i) => {
         const colonIdx = line.indexOf(':');
+
+        if (colonIdx === -1) {
+          return (
+            <div key={i} className="py-2 px-3 text-slate-600 italic text-xs">
+              {line}
+            </div>
+          );
+        }
+
         const day = line.substring(0, colonIdx).trim();
         const timePart = line.substring(colonIdx + 1).trim();
-        const slots = timePart.split(',').map((s) => fixAmPm(s.trim()));
-        const isToday = i === todayIdx;
+        const isToday = day.toLowerCase().startsWith(currentDayName);
+
         const isClosed = timePart.toLowerCase().includes('closed');
+        const isDiffer = timePart.toLowerCase().includes('differ');
+        const hasDigits = /\d/.test(timePart);
+
+        const slots = timePart.split(',').map((s) => fixAmPm(s.trim())).filter(Boolean);
 
         return (
           <div
@@ -86,11 +132,13 @@ export default function ClinicHours() {
             <div className="flex flex-col gap-0.5">
               {isClosed ? (
                 <span className="text-red-600 font-medium">Closed</span>
+              ) : isDiffer || !hasDigits ? (
+                <span className="text-amber-700 font-medium">{timePart}</span>
               ) : (
                 slots.map((slot, j) => (
                   <span
                     key={j}
-                    className={`leading-relaxed ${
+                    className={`leading-relaxed whitespace-nowrap ${
                       isToday ? 'font-semibold text-teal-800' : 'text-slate-600'
                     }`}
                   >
