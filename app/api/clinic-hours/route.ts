@@ -28,7 +28,7 @@ export async function GET() {
     }
 
     const data = await res.json();
-    return NextResponse.json(data, {
+    return NextResponse.json({ ...data, fetchedAt: new Date().toISOString() }, { 
       headers: {
         'Cache-Control': 'no-store, max-age=0',
       },
