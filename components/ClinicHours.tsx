@@ -1,8 +1,40 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { CLINIC } from '@/lib/constants';
+
+const DAY_NAMES = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+function orderSundayFirst(lines: string[]): string[] {
+  const ordered: string[] = [];
+  const unmatched = [...lines];
+
+  for (const day of DAY_NAMES) {
+    const idx = unmatched.findIndex((line) => {
+      const colonIdx = line.indexOf(':');
+      const prefix = (colonIdx > -1 ? line.substring(0, colonIdx) : line)
+        .trim()
+        .toLowerCase();
+      return prefix.startsWith(day.toLowerCase());
+    });
+    if (idx !== -1) {
+      ordered.push(unmatched[idx]);
+      unmatched.splice(idx, 1);
+    }
+  }
+
+  return [...ordered, ...unmatched];
+}
 
 function fixAmPm(slot: string): string {
-  const parts = slot.split('–').map(s => s.trim());
+  const parts = slot.split(/[\u2013\u2014–-]/).map((s) => s.trim());
   if (parts.length !== 2) return slot;
   const [start, end] = parts;
   const hasAmPm = (t: string) => /\b(AM|PM)\b/i.test(t);
@@ -23,10 +55,13 @@ export default function ClinicHours() {
   useEffect(() => {
     async function fetchHours() {
       try {
-        const res = await fetch('/api/clinic-hours');
-        const { regularOpeningHours } = await res.json();
-        const lines = regularOpeningHours?.weekdayDescriptions || [];
-        setHours([...lines.slice(6), ...lines.slice(0, 6)]);
+        const res = await fetch('/api/clinic-hours', { cache: 'no-store' });
+        const data = await res.json();
+        const lines: string[] =
+          data?.currentOpeningHours?.weekdayDescriptions ||
+          data?.regularOpeningHours?.weekdayDescriptions ||
+          [];
+        setHours(orderSundayFirst(lines));
       } catch {
         setHours([]);
       } finally {
@@ -36,56 +71,77 @@ export default function ClinicHours() {
     fetchHours();
   }, []);
 
-  const todayIdx = new Date().getDay();
+  if (loading) {
+    return (
+      <div className="py-2 text-slate-500 text-xs sm:text-sm animate-pulse">
+        Loading live hours...
+      </div>
+    );
+  }
 
-  if (loading) return (
-    <p style={{ color: '#5a7070', fontSize: 14 }}>Loading hours...</p>
-  );
-  if (!hours.length) return (
-    <p style={{ color: '#5a7070', fontSize: 14 }}>Hours unavailable</p>
-  );
+  if (!hours.length) {
+    return (
+      <div className="py-2 text-slate-500 text-xs sm:text-sm">
+        <p className="italic mb-1">Hours feed temporarily unavailable.</p>
+        <p className="text-xs text-teal-700 font-medium">{CLINIC.hours.fallbackText}</p>
+      </div>
+    );
+  }
+
+  const currentDayName = DAY_NAMES[new Date().getDay()].toLowerCase();
 
   return (
-    <div style={{ width: '100%', maxWidth: 380, fontFamily: 'inherit' }}>
+    <div className="w-full max-w-[380px] font-inherit text-xs sm:text-sm">
       {hours.map((line, i) => {
         const colonIdx = line.indexOf(':');
+
+        if (colonIdx === -1) {
+          return (
+            <div key={i} className="py-2 px-3 text-slate-600 italic text-xs">
+              {line}
+            </div>
+          );
+        }
+
         const day = line.substring(0, colonIdx).trim();
         const timePart = line.substring(colonIdx + 1).trim();
-        const slots = timePart.split(',').map(s => fixAmPm(s.trim()));
-        const isToday = i === todayIdx;
+        const isToday = day.toLowerCase().startsWith(currentDayName);
+
         const isClosed = timePart.toLowerCase().includes('closed');
+        const isDiffer = timePart.toLowerCase().includes('differ');
+        const hasDigits = /\d/.test(timePart);
+
+        const slots = timePart.split(',').map((s) => fixAmPm(s.trim())).filter(Boolean);
 
         return (
-          <div key={i} style={{
-            display: 'flex',
-            padding: '10px 14px',
-            marginBottom: 2,
-            borderRadius: 10,
-            background: isToday ? '#e6f4f4' : 'transparent',
-            borderLeft: isToday
-              ? '3px solid #0d6e6e'
-              : '3px solid transparent',
-          }}>
-            <div style={{ minWidth: 110, flexShrink: 0, paddingTop: 1 }}>
-              <span style={{
-                fontSize: 14,
-                fontWeight: isToday ? 700 : 500,
-                color: isToday ? '#0d6e6e' : '#374151',
-              }}>
+          <div
+            key={i}
+            className={`flex py-2 px-3 mb-0.5 rounded-lg transition-colors ${
+              isToday ? 'bg-teal-50/80 border-l-[3px] border-teal-700' : 'bg-transparent border-l-[3px] border-transparent'
+            }`}
+          >
+            <div className="min-w-[100px] sm:min-w-[110px] shrink-0 pt-0.5">
+              <span
+                className={`font-medium ${
+                  isToday ? 'font-bold text-teal-800' : 'text-slate-700'
+                }`}
+              >
                 {isToday ? '▶ ' : ''}{day}
               </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <div className="flex flex-col gap-0.5">
               {isClosed ? (
-                <span style={{ fontSize: 14, color: '#dc2626' }}>Closed</span>
+                <span className="text-red-600 font-medium">Closed</span>
+              ) : isDiffer || !hasDigits ? (
+                <span className="text-amber-700 font-medium">{timePart}</span>
               ) : (
                 slots.map((slot, j) => (
-                  <span key={j} style={{
-                    fontSize: 14,
-                    color: isToday ? '#0d6e6e' : '#4b5563',
-                    fontWeight: isToday ? 600 : 400,
-                    lineHeight: 1.5,
-                  }}>
+                  <span
+                    key={j}
+                    className={`leading-relaxed whitespace-nowrap ${
+                      isToday ? 'font-semibold text-teal-800' : 'text-slate-600'
+                    }`}
+                  >
                     {slot}
                   </span>
                 ))
@@ -94,23 +150,9 @@ export default function ClinicHours() {
           </div>
         );
       })}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-        marginTop: 10,
-        paddingLeft: 14,
-        fontSize: 11,
-        color: '#6b7280',
-      }}>
-        <span style={{
-          width: 7, height: 7,
-          borderRadius: '50%',
-          background: '#22c55e',
-          display: 'inline-block',
-          flexShrink: 0,
-        }}/>
-        Live from Google Business Profile
+      <div className="flex items-center gap-1.5 mt-2.5 pl-3 text-[11px] text-slate-500">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block shrink-0 animate-pulse" />
+        <span>Live from Google Business Profile</span>
       </div>
     </div>
   );

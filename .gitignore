@@ -1,10 +1,15 @@
 node_modules/
+node_modules_old/
 .next/
 coverage/
 .DS_Store
 *.log
+*.tsbuildinfo
 .env*
 !.env.example
 
 # Local Netlify folder
 .netlify
+
+# Content review drafts (not deployed)
+content-review/

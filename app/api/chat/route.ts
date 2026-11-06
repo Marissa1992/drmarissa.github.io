@@ -1,10 +1,11 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { CLINIC } from '@/lib/constants';
 
 const anthropic = new Anthropic();
 
-const CALENDAR_LINK = 'https://calendar.app.google/AXGv6YPWdrFU2sNY8';
-const WHATSAPP_LINK = 'https://wa.me/919447711755';
-const PHONE_NUMBER = '+91 94477 11755';
+const CALENDAR_LINK = CLINIC.bookingUrl;
+const WHATSAPP_LINK = CLINIC.whatsapp.chatUrl;
+const PHONE_NUMBER = CLINIC.phone.display;
 
 type ChatMessage = { role: 'user' | 'assistant'; content: string };
 
@@ -43,8 +44,8 @@ Today's date in the clinic's local time (Asia/Kolkata) is ${today}. Use this whe
 # Grounding rule (very important)
 - Only answer using the verified clinic information below. Do NOT invent or guess any facts — prices, doctors, timings, services, locations, or policies.
 - If you are asked something you do not have a verified answer for, politely say you don't know. For example: "I'm sorry, I don't have that information." Then share the contact details so a human can help:
-  - Call or WhatsApp: ${PHONE_NUMBER}
-  - WhatsApp: ${WHATSAPP_LINK}
+  - Call for voice consultations: ${PHONE_NUMBER}
+  - WhatsApp chat: ${WHATSAPP_LINK}
 - Never state hours, prices, or services that are not listed below.
 
 # Services AVAILABLE at the clinic
@@ -57,7 +58,7 @@ Today's date in the clinic's local time (Asia/Kolkata) is ${today}. Use this whe
 
 # Services NOT available (must redirect to a hospital)
 - Emergencies are NOT treated at this clinic, including: airway-obstructing foreign bodies, severe nasal bleeding, and accident-related ENT trauma. These may need emergency imaging or life-saving care.
-- For any emergency, politely and clearly advise the person to go to the nearest hospital casualty/emergency department immediately. Do not attempt to handle emergencies.
+- For any emergency, politely and clearly advise the person to call 108 or go to the nearest hospital casualty/emergency department immediately. Do not attempt to handle emergencies.
 
 # Clinic hours (LIVE from the Google Business Profile — quote these exactly)
 ${hours}
@@ -68,10 +69,10 @@ ${hours}
 - When a visitor wants to book, asks about availability, or asks how to make an appointment, give them the booking link above and a brief, friendly instruction to choose a slot that suits them. You cannot see or confirm specific slot availability yourself, so direct them to the booking page to view open times.
 
 # Contact details
-- Phone / WhatsApp: ${PHONE_NUMBER}
+- Voice Calls: ${PHONE_NUMBER}
 - WhatsApp chat: ${WHATSAPP_LINK}
 - Booking page: ${CALENDAR_LINK}
-- Address: Dr. Marissa's ENT Clinic, RG-85 Sreenagar Lane, Pazhaya Rd, Pongumoodu, Thiruvananthapuram, Kerala 695011.
+- Address: ${CLINIC.name}, ${CLINIC.address.formatted}.
 
 # Formatting
 - Write in plain, friendly language. You may use Markdown links like [Book here](${CALENDAR_LINK}).
@@ -120,8 +121,8 @@ export async function POST(request: Request) {
           } catch {
             controller.enqueue(
               encoder.encode(
-                "\n\nI'm sorry, something went wrong on my end. Please call or WhatsApp us at " +
-                  PHONE_NUMBER + ' and we will be glad to help.',
+                "\n\nI'm sorry, something went wrong on my end. Please call us at " +
+                  PHONE_NUMBER + ' or message on WhatsApp and we will be glad to help.',
               ),
             );
           } finally {
