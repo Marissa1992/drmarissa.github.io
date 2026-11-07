@@ -3,7 +3,7 @@
  * All clinic details, URLs, contact information, and SEO parameters are defined here.
  */
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://drmarissa.netlify.app';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.drmarissa.in';
 
 export const CLINIC = {
   name: "Dr. Marissa's ENT Clinic",
