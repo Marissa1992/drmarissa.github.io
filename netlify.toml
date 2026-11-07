@@ -1,0 +1,25 @@
+# Send the old Netlify address to the new domain
+[[redirects]]
+  from = "https://drmarissa.netlify.app/*"
+  to = "https://www.drmarissa.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://drmarissa.netlify.app/*"
+  to = "https://www.drmarissa.in/:splat"
+  status = 301
+  force = true
+
+# Force HTTPS on the new domain
+[[redirects]]
+  from = "http://drmarissa.in/*"
+  to = "https://www.drmarissa.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.drmarissa.in/*"
+  to = "https://www.drmarissa.in/:splat"
+  status = 301
+  force = true
