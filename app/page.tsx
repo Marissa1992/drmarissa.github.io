@@ -148,11 +148,11 @@ export default function Home() {
             <div className="order-2 lg:order-1 relative">
               <div className="aspect-[4/5] md:aspect-square lg:aspect-[4/5] bg-slate-100 rounded-3xl overflow-hidden relative">
                 <Image
-                  src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Dr. Marissa's ENT Clinic examination"
+                  src="/dr-marissa.jpg"
+                  alt="Dr. Marissa, ENT specialist in Pongumoodu, Thiruvananthapuram"
                   fill
                   sizes="(min-width: 1024px) 600px, 100vw"
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>

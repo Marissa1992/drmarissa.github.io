@@ -73,11 +73,11 @@ export default function AboutPage() {
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
               <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden relative mb-6">
                 <Image
-                  src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Doctor examining patient with otoscope"
+                  src="/dr-marissa.jpg"
+                  alt="Dr. Marissa, ENT specialist at Dr. Marissa's ENT Clinic, Pongumoodu, Thiruvananthapuram"
                   fill
                   sizes="(min-width: 1024px) 400px, 100vw"
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                   priority
                 />
               </div>
