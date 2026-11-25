@@ -56,7 +56,7 @@ export default function StructuredData() {
         })),
       },
       {
-        '@type': 'IndividualPhysician',
+        '@type': ['Person', 'IndividualPhysician'],
         '@id': `${SITE_URL}/#doctor`,
         name: CLINIC.doctor,
         jobTitle: CLINIC.doctorTitle,
