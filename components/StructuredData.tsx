@@ -78,8 +78,9 @@ export default function StructuredData() {
       {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
-        url: SITE_URL,
+        url: `${SITE_URL}/`,
         name: CLINIC.name,
+        alternateName: ['Dr. Marissa ENT'],
         description: 'Expert ENT care in Thiruvananthapuram, Kerala',
         publisher: {
           '@id': `${SITE_URL}/#clinic`,
